@@ -28,6 +28,7 @@ li {
     font-size: 12px;
     display: inline-block;
     padding-right: 20px;
+    letter-spacing: 0.3px;
 }
 
 header {
@@ -82,4 +83,59 @@ main {
 
 .mini {
     width: 20%;
+}
+
+h3 {
+    color: var(--orange-colour);
+    font-size: 16px;
+    letter-spacing: 1.5px;
+}
+
+h1 {
+    color: var(--dark-blue);
+    letter-spacing: 0.8px;
+}
+
+p {
+    color: var(--dark-grayish-blue);
+    letter-spacing: 0.3px;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    padding-bottom: 7px;
+}
+
+.newprice {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.discount {
+    background-color: var(--pale-orange-colour);
+    border-radius: 5px;
+    color: var(--orange-colour);
+    font-weight: bold;
+    padding: 1px 7px;
+    margin-left: 15px;
+}
+
+.oldprice {
+    text-decoration: line-through;
+    color: var(--grayish-blue);
+    letter-spacing: 0.4px;
+}
+
+.button-section {
+    padding: 25px 0;
+}
+
+.button-add {
+    background-color: var(--orange-colour);
+    color: var(--white-colour);
+}
+
+img .button-cart {
+    display: inline
 }
