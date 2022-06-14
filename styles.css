@@ -79,3 +79,7 @@ main {
     margin-top: 20px;
     justify-content: space-between;
 }
+
+.mini {
+    width: 20%;
+}
