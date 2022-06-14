@@ -60,3 +60,22 @@ img {
     width: 35px;
     padding: 0;
 }
+
+main {
+    display: flex;
+    padding: 80px 50px;
+}
+
+.photo img{
+    border-radius: 10px;
+}
+
+.image-gallery {
+    padding-right: 100px;
+}
+
+.thumbnails {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+}
