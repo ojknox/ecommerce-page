@@ -17,6 +17,7 @@ html {
 body {
     margin: 0 auto;
     max-width: 1000px;
+    padding: 0 10px;
 }
 
 ul {
@@ -27,7 +28,7 @@ li {
     color: var(--dark-grayish-blue);
     font-size: 12px;
     display: inline-block;
-    padding-right: 20px;
+    /* padding-right: 20px; */
     letter-spacing: 0.3px;
 }
 
@@ -43,8 +44,33 @@ img {
     width: 100%;
 }
 
-.logo {
-    display: inline-block;
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-main li{
+    position: relative;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+.nav-main li:hover {
+    color: var(--dark-blue);
+}
+
+.nav-main li:before {
+    content: '';
+    position: absolute;
+    bottom: -38px;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    background-color: var(--orange-colour);
+}
+
+.nav-main li:hover:before {
+    width: 100%;
 }
 
 .ul-right {
@@ -156,6 +182,7 @@ p {
 .quantity {
     color: var(--orange-colour);
     font-size: 20px;
+    cursor: pointer;
 }
 
 .num {
