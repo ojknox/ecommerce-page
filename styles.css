@@ -81,11 +81,27 @@ img {
 .cart {
     width:  16px;
     padding-right: 30px;
+    cursor: pointer;
 }
 
 .avatar {
     width: 35px;
+    height: 35px;
     padding: 0;
+    cursor: pointer;
+}
+
+.avatar:before {
+    content: '';
+    position: absolute;
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    border: none;
+}
+
+.avatar:hover:before{
+    border: var(--orange-colour) solid 1.5px;
 }
 
 main {
@@ -192,7 +208,7 @@ p {
 
 button {
     border: 0;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 10px 0;
 }
 
@@ -207,6 +223,12 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+} 
+
+.button-add:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    transition: 0.7s;
 }
 
 .cart-white-filter {
