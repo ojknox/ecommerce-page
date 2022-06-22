@@ -114,6 +114,7 @@ main {
 
 .photo.main {
     max-width:350px;
+    cursor: pointer;
 }
 
 .photo img{
@@ -129,6 +130,26 @@ main {
 
 .mini {
     width: 20%;
+    cursor: pointer;
+    line-height: 0;
+    box-sizing: border-box;
+}
+
+.mini:hover {
+    opacity: .5;
+}
+
+.mini.active img{
+    opacity: .5;
+}
+
+.mini.active {
+    border: 2px solid var(--orange-colour);
+    border-radius: 10px;
+}
+
+.mini.active:hover {
+    opacity: 1;
 }
 
 .product-info {
@@ -201,6 +222,10 @@ p {
     color: var(--orange-colour);
     font-size: 20px;
     cursor: pointer;
+}
+
+.quantity:hover {
+    opacity: .5;
 }
 
 .num {
