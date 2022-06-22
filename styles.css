@@ -248,10 +248,9 @@ button {
     min-height: 100vh;
     display: grid;
     place-items: center;
-    padding: 1rem;
     z-index: 1000;
-    opacity: 1;
-    /* pointer-events: none; */
+    opacity: 0;
+    pointer-events: none;
     transition: var(--transition);
 }
 
@@ -262,7 +261,7 @@ button {
 
 .lightbox-wrapper {
     display: grid;
-    max-width: 450px;
+    max-width: 400px;
 }
 
 .details {
@@ -332,4 +331,20 @@ button {
 
 .lightbox-thumbnail-img:hover {
     opacity: .5;
+}
+
+.thumbnail-container {
+    background: white;
+    border-radius: 10px;
+    height: 95%;
+    box-sizing: border-box;
+}
+
+.thumbnail-container.active {
+    border: solid 2px var(--orange-colour);
+}
+
+.lightbox-thumbnail-img.active {
+    opacity: .3;
+    box-sizing: border-box;
 }
