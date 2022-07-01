@@ -114,11 +114,11 @@ main {
 
 .photo.main {
     max-width:350px;
-    cursor: pointer;
+    cursor: zoom-in;
 }
 
 .photo img{
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .thumbnails {
@@ -350,7 +350,7 @@ button {
 }
 
 .lightbox-thumbnail-img {
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer; 
 }
 
@@ -369,7 +369,6 @@ button {
     border: solid 2px var(--orange-colour);
 }
 
-.lightbox-thumbnail-img.active {
+.thumbnail-container.active img {
     opacity: .3;
-    box-sizing: border-box;
 }

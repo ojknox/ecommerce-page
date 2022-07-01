@@ -18,51 +18,66 @@ minus.addEventListener("click", () => {
 })
 
 //Switch the large product image by clicking on the small thumbnail images
-mainImg = document.getElementById('mainImg');
+const mainImg = document.getElementById('mainImg'); //big image on normal page
+const thumbnails = document.querySelectorAll('.thumbnailImg'); //thumbnails
+const thumbnailArray = Array.from(thumbnails); //array of thumbnails
+const lastImage = thumbnailArray.length - 1; 
+const lightboxMainImg = document.querySelector('.lightbox-img'); //big image in lightbox
+const thumbnailDivs = document.querySelectorAll('.photo.mini');
+const lightboxThumbnailDivs = document.querySelectorAll('.thumbnail-container');
+let activeImage = 0; //starts off with 1st image
 
-thumb1 = document.getElementById('thumb1');
-thumb1Src = thumb1.src.replace('-thumbnail', '');
-thumb2 = document.getElementById('thumb2');
-thumb2Src = thumb2.src.replace('-thumbnail', '');
-thumb3 = document.getElementById('thumb3');
-thumb3Src = thumb3.src.replace('-thumbnail', '');
-thumb4 = document.getElementById('thumb4');
-thumb4Src = thumb4.src.replace('-thumbnail', '');
+const setActiveImage = (image) => {
+    /*
+    //update 'selected' thumbnail
+    thumbnailDivs.forEach(div => {
+        div.classList.remove('active');
+    })
+    //update 'selected' lightbox thumbnail
+    lightboxThumbnailDivs.forEach(div => {
+        div.classList.remove('active');
+    })
+    */
+    mainImg.src = image.src.replace('-thumbnail', ''); //change main photo when thumbnail clicked
+    lightboxMainImg.src = image.src.replace('-thumbnail', ''); //change lightbox main photo
+    activeImage = thumbnailArray.indexOf(image); //record index of active image
+    // image.parentElement.classList.add('active');
+}
 
-thumb1.addEventListener('click', () => {
-    mainImg.src = thumb1Src;
-})
-thumb2.addEventListener('click', () => {
-    mainImg.src = thumb2Src;
-})
-thumb3.addEventListener('click', () => {
-    mainImg.src = thumb3Src;
-})
-thumb4.addEventListener('click', () => {
-    mainImg.src = thumb4Src;
+thumbnails.forEach(image => {
+    image.addEventListener('click', (e) => { 
+        setActiveImage(image);
+    })
 })
 
 //Making lightbox appear
-const lightboxEnabled = document.querySelector('.photo.main');
+//Variables
+const lightboxEnabled = document.querySelector('.photo.main'); 
 const lightboxContainer = document.querySelector('.lightbox-container');
 const lightboxBtns = document.querySelectorAll('.lightbox-btn');
 const lightboxBtnLeft = document.getElementById('left');
 const lightboxBtnRight = document.getElementById('right');
-let activeImage;
+const lightboxThumbnails = document.querySelectorAll('.lightbox-thumbnail-img');
 
-const showLightbox = () => {lightboxContainer.classList.add('active')};
+//Functions of lightbox
+const showLightbox = () => {lightboxContainer.classList.add('active');};
+
 const hideLightbox = () => {lightboxContainer.classList.remove('active')};
+
 const transitionSlideLeft = () => {
-    console.log('left');
+    activeImage === 0 ? setActiveImage(thumbnailArray[lastImage]) : setActiveImage(thumbnailArray[activeImage -1]);
 }
+
 const transitionSlideRight = () => {
-    console.log('right');
+    activeImage === lastImage ? setActiveImage(thumbnailArray[0]) : setActiveImage(thumbnailArray[activeImage +1]);
 }
+
 const transitionSlideHandler = (moveItem) => {
     moveItem.includes('left') ? transitionSlideLeft() : transitionSlideRight();
 }
 
-lightboxEnabled.addEventListener('click', (e) => {
+//Event listeners for lightbox
+lightboxEnabled.addEventListener('click', () => {
     showLightbox();
 })
 
@@ -73,7 +88,13 @@ lightboxContainer.addEventListener('click', () => {
 lightboxBtns.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.stopPropagation(); //stop container from also being clicked and therefore closed
-        transitionSlideHandler(e.currentTarget.id);
-        //console.log(e.currentTarget.id);
+        transitionSlideHandler(e.currentTarget.id); //prints left or right
+    })
+})
+
+lightboxThumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', (e) => {
+        e.stopPropagation();
+        setActiveImage(thumbnail);
     })
 })
