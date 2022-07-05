@@ -21,32 +21,30 @@ minus.addEventListener("click", () => {
 const mainImg = document.getElementById('mainImg'); //big image on normal page
 const thumbnails = document.querySelectorAll('.thumbnailImg'); //thumbnails
 const thumbnailArray = Array.from(thumbnails); //array of thumbnails
+const thumbnailDivs = document.querySelectorAll('.photo.mini');
+
 const lastImage = thumbnailArray.length - 1; 
 const lightboxMainImg = document.querySelector('.lightbox-img'); //big image in lightbox
-const thumbnailDivs = document.querySelectorAll('.photo.mini');
 const lightboxThumbnailDivs = document.querySelectorAll('.thumbnail-container');
+
 let activeImage = 0; //starts off with 1st image
 
 const setActiveImage = (image) => {
-    /*
-    //update 'selected' thumbnail
-    thumbnailDivs.forEach(div => {
-        div.classList.remove('active');
-    })
-    //update 'selected' lightbox thumbnail
-    lightboxThumbnailDivs.forEach(div => {
-        div.classList.remove('active');
-    })
-    */
     mainImg.src = image.src.replace('-thumbnail', ''); //change main photo when thumbnail clicked
     lightboxMainImg.src = image.src.replace('-thumbnail', ''); //change lightbox main photo
     activeImage = thumbnailArray.indexOf(image); //record index of active image
-    // image.parentElement.classList.add('active');
 }
 
 thumbnails.forEach(image => {
     image.addEventListener('click', (e) => { 
+        //change main photo
         setActiveImage(image);
+        //remove 'selected' thumbnail
+        thumbnailDivs.forEach(div => {
+            div.classList.remove('active');
+        })
+        //change active thumbnail
+        image.parentElement.classList.add('active');
     })
 })
 
@@ -58,18 +56,31 @@ const lightboxBtns = document.querySelectorAll('.lightbox-btn');
 const lightboxBtnLeft = document.getElementById('left');
 const lightboxBtnRight = document.getElementById('right');
 const lightboxThumbnails = document.querySelectorAll('.lightbox-thumbnail-img');
+const lightboxThumbnailArray = Array.from(lightboxThumbnails);
 
 //Functions of lightbox
-const showLightbox = () => {lightboxContainer.classList.add('active');};
+const changeLightboxThumbnail = () => {
+    lightboxThumbnailDivs.forEach(div => {
+        div.classList.remove('active');
+    })
+    lightboxThumbnailArray[activeImage].parentElement.classList.add('active');
+}
+
+const showLightbox = () => {
+    lightboxContainer.classList.add('active');
+    changeLightboxThumbnail();
+};
 
 const hideLightbox = () => {lightboxContainer.classList.remove('active')};
 
 const transitionSlideLeft = () => {
     activeImage === 0 ? setActiveImage(thumbnailArray[lastImage]) : setActiveImage(thumbnailArray[activeImage -1]);
+    changeLightboxThumbnail();
 }
 
 const transitionSlideRight = () => {
     activeImage === lastImage ? setActiveImage(thumbnailArray[0]) : setActiveImage(thumbnailArray[activeImage +1]);
+    changeLightboxThumbnail();
 }
 
 const transitionSlideHandler = (moveItem) => {
@@ -96,5 +107,10 @@ lightboxThumbnails.forEach(thumbnail => {
     thumbnail.addEventListener('click', (e) => {
         e.stopPropagation();
         setActiveImage(thumbnail);
+        lightboxThumbnailDivs.forEach(div => {
+            div.classList.remove('active');
+        })
+        thumbnail.parentElement.classList.add('active');
+        activeImage = lightboxThumbnailArray.indexOf(thumbnail);
     })
 })
