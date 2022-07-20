@@ -114,3 +114,11 @@ lightboxThumbnails.forEach(thumbnail => {
         activeImage = lightboxThumbnailArray.indexOf(thumbnail);
     })
 })
+
+//Event listener to show cart 
+const cart = document.querySelector('.cart');
+const cartContainer = document.querySelector('.cart-container');
+
+cart.addEventListener('click', () => {
+    cartContainer.classList.toggle('active');
+})
