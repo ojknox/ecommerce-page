@@ -82,12 +82,15 @@ img {
 .ul-right {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .cart {
-    width:  16px;
+    width:  20px;
     padding-right: 30px;
     cursor: pointer;
+    position: relative;
+    top: 8px;
 }
 
 .avatar {
@@ -95,6 +98,7 @@ img {
     height: 35px;
     padding: 0;
     cursor: pointer;
+    position: relative;
 }
 
 .avatar:before {
@@ -104,10 +108,12 @@ img {
     height: 33px;
     border-radius: 50%;
     border: none;
+    right: -2px;
+    top: -1.5px;
 }
 
 .avatar:hover:before{
-    border: var(--orange-colour) solid 1.5px;
+    border: var(--orange-colour) solid 2.5px;
 }
 
 main {
@@ -148,7 +154,7 @@ main {
 }
 
 .mini.active {
-    border: 2px solid var(--orange-colour);
+    outline:3px solid var(--orange-colour);
     border-radius: 10px;
 }
 
@@ -365,12 +371,12 @@ button {
 .thumbnail-container {
     background: white;
     border-radius: 10px;
-    height: 95%;
+    line-height: 0;
     box-sizing: border-box;
 }
 
 .thumbnail-container.active {
-    border: solid 2px var(--orange-colour);
+    outline: solid 3px var(--orange-colour);
 }
 
 .thumbnail-container.active img {
@@ -381,8 +387,8 @@ button {
 
 .cart-container {
     position: absolute;
-    right: 130px;
-    top: 70px;
+    right: -50px;
+    top: 45px;
     width: 300px;
     height: 200px;
     z-index: 10000;
@@ -453,4 +459,18 @@ button {
     width: 100%;
     box-shadow: none;
     padding: 15px 0;
+}
+
+.cart-counter {
+    background-color: var(--orange-colour);
+    color: var(--white-colour);
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    top: -27px;
+    right: -10px;
+    opacity: 0;
+    display: block;
 }

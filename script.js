@@ -8,6 +8,7 @@ let n = 0;
 plus.addEventListener("click", () => {
   n++;
   num.innerHTML = n;
+  cartBadge.innerHTML = n;
   updateCartTotal();
 });
 
@@ -15,11 +16,13 @@ minus.addEventListener("click", () => {
   if (n > 0) {
     n--;
     num.innerHTML = n;
+    cartBadge.innerHTML = n;
     updateCartTotal();
   }
 
   if(!cartItem.classList.contains("inactive") && n === 0){
     switchCart();
+    cartBadge.style.opacity = 0;
   }
 });
 
@@ -141,6 +144,7 @@ const checkoutButton = document.querySelector(".button-add.checkout");
 const emptyBasket = document.getElementsByClassName("cart-empty")[0];
 const cartItem = document.getElementsByClassName("cart-item")[0];
 const addToCartButton = document.getElementById("addToCart");
+const cartBadge = document.querySelector('.cart-counter');
 
 //Start with empty basket
 if (n === 0) {
@@ -153,12 +157,16 @@ if (n === 0) {
 addToCartButton.addEventListener("click", () => {
   if (cartItem.classList.contains("inactive") === true && n !== 0) {
     switchCart();
+    cartContainer.classList.toggle("active");
+    cartBadge.style.opacity = "1";
+    cartBadge.innerHTML = n;
   }
 });
 
 //Delete item from cart
 deleteButton.addEventListener("click", () => {
   switchCart();
+  cartBadge.style.opacity = 0;
 });
 
 const changeDisplay = (item) => {
@@ -188,3 +196,12 @@ const updateCartTotal = () => {
   qtyElement.innerHTML = n;
   totalElement.innerHTML = `$${(n * price).toFixed(2)}`;
 };
+
+//alert if click checkout button
+checkoutButton.addEventListener('click', () => {
+    alert('Thank you for checking out!');
+    switchCart();
+    n = 0;
+    num.innerHTML = n;
+    cartBadge.style.opacity = 0;
+})
