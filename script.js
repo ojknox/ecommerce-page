@@ -205,3 +205,21 @@ checkoutButton.addEventListener('click', () => {
     num.innerHTML = n;
     cartBadge.style.opacity = 0;
 })
+
+//sidebar menu
+const hamburger = document.querySelector('.hamburger');
+const hamburgerMenu = (hamburger.children[0]);
+const sidebarMenu = document.querySelector('.sidebar-menu');
+const sidebarContainer = document.querySelector('.sidebar-container');
+
+hamburgerMenu.addEventListener('click', () => {
+  sidebarMenu.style.left = '0px';
+  sidebarContainer.classList.add('active');
+})
+
+const sidebarClose = document.querySelector('.sidebar-close');
+
+sidebarClose.addEventListener('click', () => {
+  sidebarMenu.style.left = '-1000px';
+  sidebarContainer.classList.remove('active');
+})
