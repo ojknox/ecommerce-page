@@ -102,9 +102,11 @@ const transitionSlideHandler = (moveItem) => {
   moveItem.includes("left") ? transitionSlideLeft() : transitionSlideRight();
 };
 
-//Event listeners for lightbox
+//Event listeners for lightbox - only show lightbox on larger screens
 lightboxEnabled.addEventListener("click", () => {
-  showLightbox();
+  if(window.matchMedia('only screen and (min-width: 768px)').matches){
+    showLightbox();
+  }
 });
 
 lightboxContainer.addEventListener("click", () => {
@@ -222,4 +224,30 @@ const sidebarClose = document.querySelector('.sidebar-close');
 sidebarClose.addEventListener('click', () => {
   sidebarMenu.style.left = '-1000px';
   sidebarContainer.classList.remove('active');
+})
+
+
+//mobile left and right buttons
+const mobileBtns = document.querySelectorAll(".mobile-btn");
+const mobileBtnLeft = document.querySelector('.mobile-left');
+const mobileBtnRight = document.querySelector('.mobile-right');
+
+mobileBtnLeft.addEventListener('click', () => {
+  if(activeImage === 0){
+    mainImg.src = mainImg.src.replace("image-product-1", "image-product-4");
+    activeImage = 3;
+  } else {
+    mainImg.src = mainImg.src.replace(`image-product-${activeImage + 1}`, `image-product-${activeImage}`);
+    activeImage = activeImage - 1;
+  }
+});
+
+mobileBtnRight.addEventListener('click', () => {
+  if(activeImage === lastImage){
+    mainImg.src = mainImg.src.replace("image-product-4", "image-product-1");
+    activeImage = 0;
+  } else {
+    mainImg.src = mainImg.src.replace(`image-product-${activeImage + 1}`, `image-product-${activeImage + 2}`);
+    activeImage = activeImage + 1;
+  }
 })
